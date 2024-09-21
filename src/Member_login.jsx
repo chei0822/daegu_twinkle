@@ -166,11 +166,15 @@ export default function Login() {
     };
 
     const handleRegisterClick = () => {
-        navigate('/register');
+        navigate('/login');
     }
 
     const handleHomeClick=()=> {
         navigate("main");
+    }
+
+    const handleMemberRegiserClick=()=> {
+        navigate('/member_register')
     }
 
     return (
@@ -231,7 +235,12 @@ export default function Login() {
 
                 <div className="register">
                     <button type="button" onClick={handleRegisterClick} style={styles.registerButton}>
-                        관리자 등록
+                        관리자 로그인
+                    </button>
+                </div>
+                <div className='member_register'>
+                    <button type="button" onClick={handleMemberRegiserClick} style={styles.registerButton}>
+                        User Register
                     </button>
                 </div>
             </form>
