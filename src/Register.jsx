@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styled from "styled-components";
+import logo from "../src/image/04-2.jpg"
 
 
 const styles = {
     registerFrame: {
         position: 'absolute',
-        top: '5px',
+        top: '10px',
         bottom: '0',
         width: '100%',
         maxWidth: '500px',
-        padding: '0 20px',
+        padding: '0 30px',
         left: '50%',
         transform: 'translate(-50%, 0)',
         backgroundColor: '#F7f7f7',
@@ -18,12 +20,13 @@ const styles = {
         flexDirection: 'column',
     },
     title: {
-        marginTop: '8px',
-        fontSize: '26px',
+        display:'flex-start',
+        marginTop: '10px',
+        fontSize: '20px',
         fontWeight: '700',
         color: '#262626',
         fontFamily: 'NanumSquareNeoExtraBold',
-        marginBottom: '5px',
+        marginBottom: '10px',
     },
     infoOptionalText: {
         fontFamily: 'NanumSquareNeoExtraBold',
@@ -35,8 +38,9 @@ const styles = {
         color: '#262626',
         textAlign: 'left',
         fontFamily: "'NanumSquareNeo'",
-        marginBottom: '5px',
-        marginTop: '5px',
+        marginBottom: '10px',
+        marginTop: '10px',
+        padding:'10px'
     },
     inputWrap: {
         display: 'flex',
@@ -66,17 +70,23 @@ const styles = {
         cursor: 'pointer',
         marginTop: '10px',
     },
-    knuLogo: {
-        float: 'left',
-        width: '100px',
-        marginBottom: '3px',
-    },
     errorMessage: {
         color: '#ef0000',
         fontSize: '12px',
         fontFamily: 'NanumSquareNeo',
     },
 };
+
+const Btnstyle = styled.button`
+    float: left;
+    width: 80px;
+    height: 50px; 
+    background: url(${logo}) no-repeat center;
+    background-size: contain; 
+    border: none; 
+    cursor: pointer;
+
+`;
 
 export default function Register() {
     const navigate = useNavigate();
@@ -160,12 +170,16 @@ export default function Register() {
             alert("입력 값을 확인해주세요.");
         }
     };
+
+    const handleLoginClick=()=> {
+        navigate("/login");
+    }
     
     return (
         <div style={styles.registerFrame}>
             <form onSubmit={handleSubmit}>
                 <div className="header">
-                    <img style={styles.knuLogo} alt="04-2" src="image/04-2.jpg" />
+                    <Btnstyle onClick={handleLoginClick}/>
                 </div>
                 <br /> 
                 <br/>

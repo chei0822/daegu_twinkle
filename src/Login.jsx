@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styled from "styled-components";
 import "./font/font.css";
+import logo from "../src/image/04-2.jpg";
+
 const styles = {
     page: {
         position: 'absolute',
@@ -94,6 +97,18 @@ const styles = {
     },
 };
 
+const Btnstyle = styled.button`
+    float: left;
+    width: 100px;
+    height: 100px; 
+    margin-bottom: 6px;
+    background: url(${logo}) no-repeat center;
+    background-size: contain; 
+    border: none; 
+    cursor: pointer;
+`;
+
+
 export default function Login() {
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
@@ -154,10 +169,14 @@ export default function Login() {
         navigate('/register');
     }
 
+    const handleHomeClick=()=> {
+        navigate("main");
+    }
+
     return (
         <div style={styles.page}>
             <div className="header">
-                <img style={styles.knuLogo} alt="KNU Logo" src="image/04-2.jpg" />
+                <Btnstyle bg={logo} onClick={handleHomeClick} />
             </div>
 
             <div style={styles.titleWrap}>
