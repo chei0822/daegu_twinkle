@@ -97,19 +97,15 @@ export default function Register() {
             ...formData,
             [name]: value
         });
-    
-        // ID 입력 시 5자 이상인지 체크
+
         validateField(name, value);
     };
-    
-    
 
     const validateField = (name, value) => {
         let tempErrors = { ...errors };
-    
+
         switch (name) {
             case 'employeeId':
-                // 영문자 또는 숫자가 아닌 경우
                 const idValid = /^[a-zA-Z0-9]*$/.test(value);
                 if (!idValid) {
                     tempErrors.employeeId = '교직원 ID는 영문자와 숫자만 사용할 수 있습니다.';
@@ -138,15 +134,56 @@ export default function Register() {
             default:
                 break;
         }
-    
+
         setErrors(tempErrors);
     };
-    
-    
+
+    const validateForm = () => {
+        let tempErrors = { ...errors };
+        let isValid = true;
+
+        // 각 필드가 빈칸인지 체크
+        if (!formData.employeeId) {
+            tempErrors.employeeId = '교직원 ID를 입력하세요.';
+            isValid = false;
+        }
+        if (!formData.password) {
+            tempErrors.password = '비밀번호를 입력하세요.';
+            isValid = false;
+        }
+        if (!formData.confirmPassword) {
+            tempErrors.confirmPassword = '비밀번호 확인을 입력하세요.';
+            isValid = false;
+        }
+        if (!formData.birthDate) {
+            tempErrors.birthDate = '생년월일을 입력하세요.';
+            isValid = false;
+        }
+        if (!formData.phoneNumber) {
+            tempErrors.phoneNumber = '전화번호를 입력하세요.';
+            isValid = false;
+        }
+
+        setErrors(tempErrors);
+        return isValid;
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (Object.keys(errors).every(key => !errors[key])) {
+    
+        // 빈 입력 필드 체크
+        const newErrors = {};
+        if (!formData.employeeId) newErrors.employeeId = '교직원 ID는 필수입니다.';
+        if (!formData.password) newErrors.password = '비밀번호는 필수입니다.';
+        if (!formData.confirmPassword) newErrors.confirmPassword = '비밀번호 확인은 필수입니다.';
+        if (!formData.birthDate) newErrors.birthDate = '생년월일은 필수입니다.';
+        if (!formData.phoneNumber) newErrors.phoneNumber = '전화번호는 필수입니다.';
+    
+        // 기존 오류와 병합
+        setErrors(newErrors);
+    
+        // 오류가 없으면 회원가입 처리
+        if (Object.keys(newErrors).length === 0) {
             try {
                 // API로 데이터 전송 (여기에 실제 API 호출)
                 setSuccessMessage('관리자 등록에 성공하였습니다!');
@@ -157,7 +194,7 @@ export default function Register() {
                 console.error("회원가입 중 오류 발생:", error);
             }
         } else {
-            alert("입력 값을 확인해주세요.");
+            alert("모든 필드를 올바르게 입력해주세요.");
         }
     };
     
