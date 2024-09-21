@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "./font/font.css";
-
+import { useNavigate } from 'react-router-dom';
 const styles = {
   App: {
     textAlign: 'center',
@@ -42,6 +42,18 @@ const styles = {
     borderRadius: '10px',
     marginTop: '20px', // 메뉴판 아래로 20px 띄움
     float:'center'
+  },
+  paybutton:{
+    backgroundColor:'#DA2127',
+    width:'225px',
+    height:'30px',
+    float:'right',
+    fontSize:'25px',
+    cursor:'pointer',
+    fontWeight:'700',
+    fontFamily: "'NanumSquareNeo'",
+    border:'none',
+    borderRadius:'10px'
   }
 };
 
@@ -65,6 +77,8 @@ function Main() {
           : [...prevItems, { name: menuName, quantity: 1 }]
       );
     };
+
+    const navigate = useNavigate();
   
     const handleQuantityChange = (menuName, quantity) => {
       setSelectedItems((prevItems) =>
@@ -80,6 +94,12 @@ function Main() {
         return total + (menu.price * item.quantity);
       }, 0);
     };
+
+    const handlePaymentClick =() => {
+      navigate('/Payment', {
+        state:{selectedItems}
+      })
+    }
 
   return (
     <div style={styles.App}>
@@ -143,6 +163,7 @@ function Main() {
               </tr>
             </tbody>
           </table>
+          <button className="paybutton" style={styles.paybutton} onClick={handlePaymentClick}>결제하기</button>
         </div>
       )}
     </div>

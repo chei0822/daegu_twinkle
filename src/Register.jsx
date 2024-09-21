@@ -3,34 +3,55 @@ import { useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 import logo from "../src/image/04-2.jpg"
 
-
 const styles = {
-    registerFrame: {
-        position: 'absolute',
-        top: '10px',
-        bottom: '0',
-        width: '100%',
-        maxWidth: '500px',
-        padding: '0 30px',
-        left: '50%',
-        transform: 'translate(-50%, 0)',
-        backgroundColor: '#F7f7f7',
-        overflow: 'hidden',
+    pageContainer: {
         display: 'flex',
         flexDirection: 'column',
+        minHeight: '100vh',
+        backgroundColor: '#F7f7f7',
+    },
+    header: {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        backgroundColor: '#F7f7f7',
+        zIndex: 1000,
+        padding: '10px 0',
+        borderBottom: '1px solid #e0e0e0',
+    },
+    headerContent: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        width: '100%',
+        maxWidth: '800px',
+        margin: '0 auto',
+        padding: '0 15px',
+    },
+    body: {
+        marginTop: '80px',
+        flexGrow: 1,
+        overflowY: 'auto',
+        padding: '20px 15px',
+    },
+    registerFrame: {
+        maxWidth: '500px',
+        margin: '0 auto',
+        backgroundColor: '#F7f7f7',
+        padding: '0 10px',
     },
     title: {
-        display:'flex-start',
-        marginTop: '10px',
-        fontSize: '20px',
+        fontSize: '24px',
         fontWeight: '700',
         color: '#262626',
         fontFamily: 'NanumSquareNeoExtraBold',
-        marginBottom: '10px',
+        marginBottom: '20px',
+        textAlign: 'center',
     },
     infoOptionalText: {
         fontFamily: 'NanumSquareNeoExtraBold',
-        marginBottom: '20px',
+        marginBottom: '15px',
     },
     inputTitle: {
         fontSize: '15px',
@@ -38,15 +59,13 @@ const styles = {
         color: '#262626',
         textAlign: 'left',
         fontFamily: "'NanumSquareNeo'",
-        marginBottom: '10px',
-        marginTop: '10px',
-        padding:'10px'
+        marginBottom: '5px',
+        marginTop: '15px',
     },
     inputWrap: {
         display: 'flex',
         borderRadius: '8px',
         padding: '13px',
-        marginTop: '4px',
         backgroundColor: 'white',
         border: '1px solid #e2e0c0',
         marginBottom: '5px',
@@ -68,7 +87,7 @@ const styles = {
         borderRadius: '64px',
         color: 'white',
         cursor: 'pointer',
-        marginTop: '10px',
+        marginTop: '20px',
     },
     errorMessage: {
         color: '#ef0000',
@@ -78,14 +97,12 @@ const styles = {
 };
 
 const Btnstyle = styled.button`
-    float: left;
     width: 80px;
     height: 50px; 
     background: url(${logo}) no-repeat center;
     background-size: contain; 
     border: none; 
     cursor: pointer;
-
 `;
 
 export default function Register() {
@@ -107,7 +124,6 @@ export default function Register() {
             ...formData,
             [name]: value
         });
-
         validateField(name, value);
     };
 
@@ -116,30 +132,18 @@ export default function Register() {
 
         switch (name) {
             case 'employeeId':
-                const idValid = /^[a-zA-Z0-9]*$/.test(value);
-                if (!idValid) {
-                    tempErrors.employeeId = '교직원 ID는 영문자와 숫자만 사용할 수 있습니다.';
-                } else if (value.length < 5) {
-                    tempErrors.employeeId = '교직원 ID는 5자 이상이어야 합니다.';
-                } else {
-                    tempErrors.employeeId = '';
-                }
+                tempErrors.employeeId = value.length < 5 ? '교직원 ID는 5자 이상이어야 합니다.' : '';
                 break;
             case 'password':
-                const passwordValid = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/.test(value);
-                if (!passwordValid) {
-                    tempErrors.password = '비밀번호는 영문, 숫자, 특수문자를 포함해야 합니다.';
-                } else if (value.length < 8) {
-                    tempErrors.password = '비밀번호는 8자 이상이어야 합니다.';
-                } else {
-                    tempErrors.password = '';
-                }
+                tempErrors.password = !/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/.test(value) || value.length < 8
+                    ? '비밀번호는 8자 이상이며, 영문, 숫자, 특수문자를 포함해야 합니다.'
+                    : '';
                 break;
             case 'confirmPassword':
-                tempErrors.confirmPassword = value === formData.password ? '' : '비밀번호가 일치하지 않습니다.';
+                tempErrors.confirmPassword = value !== formData.password ? '비밀번호가 일치하지 않습니다.' : '';
                 break;
             case 'phoneNumber':
-                tempErrors.phoneNumber = value.match(/^\d{3}-\d{4}-\d{4}$/) ? '' : '올바른 전화번호 형식을 입력하세요.';
+                tempErrors.phoneNumber = !/^\d{3}-\d{4}-\d{4}$/.test(value) ? '올바른 전화번호 형식을 입력하세요.' : '';
                 break;
             default:
                 break;
@@ -148,154 +152,121 @@ export default function Register() {
         setErrors(tempErrors);
     };
 
-    const validateForm = () => {
-        let tempErrors = { ...errors };
-        let isValid = true;
-
-        // 각 필드가 빈칸인지 체크
-        if (!formData.employeeId) {
-            tempErrors.employeeId = '교직원 ID를 입력하세요.';
-            isValid = false;
-        }
-        if (!formData.password) {
-            tempErrors.password = '비밀번호를 입력하세요.';
-            isValid = false;
-        }
-        if (!formData.confirmPassword) {
-            tempErrors.confirmPassword = '비밀번호 확인을 입력하세요.';
-            isValid = false;
-        }
-        if (!formData.birthDate) {
-            tempErrors.birthDate = '생년월일을 입력하세요.';
-            isValid = false;
-        }
-        if (!formData.phoneNumber) {
-            tempErrors.phoneNumber = '전화번호를 입력하세요.';
-            isValid = false;
-        }
-
-        setErrors(tempErrors);
-        return isValid;
-    };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
-        // 빈 입력 필드 체크
         const newErrors = {};
-        if (!formData.employeeId) newErrors.employeeId = '교직원 ID는 필수입니다.';
-        if (!formData.password) newErrors.password = '비밀번호는 필수입니다.';
-        if (!formData.confirmPassword) newErrors.confirmPassword = '비밀번호 확인은 필수입니다.';
-        if (!formData.birthDate) newErrors.birthDate = '생년월일은 필수입니다.';
-        if (!formData.phoneNumber) newErrors.phoneNumber = '전화번호는 필수입니다.';
-    
-        // 기존 오류와 병합
-        setErrors(newErrors);
-    
-        // 오류가 없으면 회원가입 처리
+        Object.keys(formData).forEach(key => {
+            if (!formData[key]) {
+                newErrors[key] = `${key === 'employeeId' ? '교직원 ID' : key}는 필수입니다.`;
+            }
+        });
+
         if (Object.keys(newErrors).length === 0) {
             try {
                 // API로 데이터 전송 (여기에 실제 API 호출)
                 setSuccessMessage('관리자 등록에 성공하였습니다!');
                 setTimeout(() => {
-                    navigate('/login'); // 로그인 페이지로 이동
+                    navigate('/login');
                 }, 2000);
             } catch (error) {
                 console.error("회원가입 중 오류 발생:", error);
             }
         } else {
-            alert("모든 필드를 올바르게 입력해주세요.");
+            setErrors(newErrors);
         }
     };
 
-    const handleLoginClick=()=> {
-        navigate("/login");
-    }
-    
     return (
-        <div style={styles.registerFrame}>
-            <form onSubmit={handleSubmit}>
-                <div className="header">
-                    <Btnstyle onClick={handleLoginClick}/>
+        <div style={styles.pageContainer}>
+            <header style={styles.header}>
+                <div style={styles.headerContent}>
+                    <Btnstyle onClick={() => navigate("/login")}/>
                 </div>
-                <br /> 
-                <br/>
-                <div style={styles.title}>관리자 등록 페이지</div>
-                
-                <div className="infoTextFrame">
-                    <p style={styles.infoOptionalText}>필수 사항</p>
-                </div>
+            </header>
+            <div style={styles.body}>
+                <div style={styles.registerFrame}>
+                    <h1 style={styles.title}>관리자 등록 페이지</h1>
+                    
+                    <form onSubmit={handleSubmit}>
+                        <div style={styles.infoOptionalText}>필수 사항</div>
 
-                <div className="userInputFrame">
-                    <div style={styles.inputTitle}>교직원 ID</div>
-                    <div style={styles.inputWrap}>
-                        <input
-                            type="text"
-                            onChange={handleInputChange}
-                            style={styles.input} 
-                            name="employeeId"/>
-                        {errors.employeeId && <div style={styles.errorMessage}>{errors.employeeId}</div>}
-                    </div>
-                </div>
+                        <div>
+                            <div style={styles.inputTitle}>교직원 ID</div>
+                            <div style={styles.inputWrap}>
+                                <input
+                                    type="text"
+                                    name="employeeId"
+                                    value={formData.employeeId}
+                                    onChange={handleInputChange}
+                                    style={styles.input} 
+                                />
+                            </div>
+                            {errors.employeeId && <div style={styles.errorMessage}>{errors.employeeId}</div>}
+                        </div>
 
-                <div className="userInputFrame">
-                    <div style={styles.inputTitle}>비밀번호</div>
-                    <div style={styles.inputWrap}>
-                        <input 
-                        type="password" 
-                        name="password" 
-                        value={formData.password} 
-                        onChange={handleInputChange}
-                        style={styles.input}
-                         />
-                        {errors.password && <div style={styles.errorMessage}>{errors.password}</div>}
-                    </div>
-                </div>
+                        <div>
+                            <div style={styles.inputTitle}>비밀번호</div>
+                            <div style={styles.inputWrap}>
+                                <input 
+                                    type="password" 
+                                    name="password" 
+                                    value={formData.password} 
+                                    onChange={handleInputChange}
+                                    style={styles.input}
+                                />
+                            </div>
+                            {errors.password && <div style={styles.errorMessage}>{errors.password}</div>}
+                        </div>
 
-                <div className="userInputFrame">
-                    <div style={styles.inputTitle}>비밀번호 확인</div>
-                    <div style={styles.inputWrap}>
-                        <input 
-                        type="password" 
-                        name="confirmPassword" 
-                        value={formData.confirmPassword} 
-                        onChange={handleInputChange}
-                        style={styles.input} />
-                        {errors.confirmPassword && <div style={styles.errorMessage}>{errors.confirmPassword}</div>}
-                    </div>
-                </div>
+                        <div>
+                            <div style={styles.inputTitle}>비밀번호 확인</div>
+                            <div style={styles.inputWrap}>
+                                <input 
+                                    type="password" 
+                                    name="confirmPassword" 
+                                    value={formData.confirmPassword} 
+                                    onChange={handleInputChange}
+                                    style={styles.input} 
+                                />
+                            </div>
+                            {errors.confirmPassword && <div style={styles.errorMessage}>{errors.confirmPassword}</div>}
+                        </div>
 
-                <div className="userInputFrame">
-                    <div style={styles.inputTitle}>생년월일</div>
-                    <div style={styles.inputWrap}>
-                        <input 
-                        type="date" 
-                        name="birthDate"
-                        value={formData.birthDate}
-                        onChange={handleInputChange}
-                        style={styles.input} />
-                    </div>
-                </div>
+                        <div>
+                            <div style={styles.inputTitle}>생년월일</div>
+                            <div style={styles.inputWrap}>
+                                <input 
+                                    type="date" 
+                                    name="birthDate"
+                                    value={formData.birthDate}
+                                    onChange={handleInputChange}
+                                    style={styles.input} 
+                                />
+                            </div>
+                            {errors.birthDate && <div style={styles.errorMessage}>{errors.birthDate}</div>}
+                        </div>
 
-                <div className="userInputFrame">
-                    <div style={styles.inputTitle}>전화번호</div>
-                    <div style={styles.inputWrap}>
-                        <input 
-                        type="tel" 
-                        name="phoneNumber" 
-                        value={formData.phoneNumber}
-                        onChange={handleInputChange} 
-                        placeholder="010-1234-5678 형태로 입력하세요" 
-                        style={styles.input}/>
-                        {errors.phoneNumber && <div style={styles.errorMessage}>{errors.phoneNumber}</div>}
-                    </div>
-                </div>
+                        <div>
+                            <div style={styles.inputTitle}>전화번호</div>
+                            <div style={styles.inputWrap}>
+                                <input 
+                                    type="tel" 
+                                    name="phoneNumber" 
+                                    value={formData.phoneNumber}
+                                    onChange={handleInputChange} 
+                                    placeholder="010-1234-5678 형태로 입력하세요" 
+                                    style={styles.input}
+                                />
+                            </div>
+                            {errors.phoneNumber && <div style={styles.errorMessage}>{errors.phoneNumber}</div>}
+                        </div>
 
-                <div className="complete">
-                    <button type="submit" style={styles.completeButton}>등록하기</button>
+                        <button type="submit" style={styles.completeButton}>등록하기</button>
+                    </form>
+                    
+                    {successMessage && <div style={{ color: 'green', marginTop: '10px', textAlign: 'center' }}>{successMessage}</div>}
                 </div>
-            </form>
-            {successMessage && <div style={{ color: 'green', marginTop: '10px' }}>{successMessage}</div>}
+            </div>
         </div>
     );
 }
