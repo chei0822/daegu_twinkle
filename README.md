@@ -1,70 +1,53 @@
-# Getting Started with Create React App
+# <키퍼스> - <메뉴버디>
+## 서비스 요약
+- 메뉴버디는 외국어 지원 학식 키오스크 서비스입니다.
+- 메뉴버디 서비스는 관리자가 학식 메뉴를 등록하면, 일본어, 중국어, 스페인어, 영어로 메뉴가 번역되며 외국인 학우가 손쉽게 학식을 주문할 수 있는 서비스입니다.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 주제 구분
+-	E타입 경북대에 다니는 다양한 배경의 학우들을 위한 서비스
 
-## Available Scripts
+## 팀원 소개
+### FE
+---
+- 신채이: IT대학 컴퓨터학부 인공지능컴퓨팅전공, 로그인, 관리자 등록 페이지 제작. 메인 페이지와 연동
+- 황원영: IT대학 컴퓨터학부 인공지능컴퓨팅전공, 메인 페이지(학식 지원 페이지) 제작
+### BE
+---
+- 신지우: // 관리자 등록 DB 및 연동 제작
+### PM
+---
+- 김나현: IT대학 컴퓨터학부 인공지능컴퓨팅전공, Github 및 각종 문서관리, 제작 도움 
 
-In the project directory, you can run:
+## 시연 영상
+(필수) Youtube 링크
+(선택) Github Repository 페이지에서 바로 볼 수 있도록 넣어주셔도 좋습니다.
 
-### `npm start`
+## 서비스 소개
+### 서비스 개요
+서비스에 대한 개요/요약을 개략적으로 작성
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+ex) 
+탁구를 치기 위해 각자의 실력에 맞는 사용자를 찾아 매칭해주는 서비스이다.
+사용자는 서비스를 통해 실력이 비슷한 상대를 찾을 수 있다.
+또한, 서비스를 통해 탁구와 관련된 정보를 쉽게 찾아보거나 탁구 용품을 쉽게 구매할 수 있다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 타서비스와의 차별점
+비슷한 부류의 다른 서비스들과 구별되는 차별점을 기재
 
-### `npm run build`
+### 구현 내용 및 결과물
+서비스의 실제 구현 내용과 결과물을 기재한다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+ex)
+1. 실력별 매칭 시스템
+  - 본인이 미리 선택한 탁구 실력에 맞추어 다른 사용자를 매칭해준다.
+  - 매칭된 사용자와의 매칭이 종료된 이후, 상대의 실력을 평가할 수 있다.
+2. 탁구 용품 구매 페이지
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 구현 방식
+어떤 언어와 프레임워크를 사용했는지, 만약 배포를 진행했다면 환경은 어떤지 등을 기재
+ex) 프론트엔드로는 TypeScript와 React를 사용, 백엔드로는 Java와 Spring을 사용. AWS를 통해 배포를 진행
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 향후 개선 혹은 발전 방안
+현재 개발된 서비스에서 향후 개선되거나 발전될 수 있는 부분에 대한 설명
