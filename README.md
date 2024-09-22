@@ -46,7 +46,7 @@
 
 
 ### 구현 방식
-- 프론트엔드: React 환경 기반 Html+css+javascript를 사용
+- 프론트엔드: React 환경 기반 js+ React nativte를 사용
 - 벡앤드: Servlet JSP 사용
 <div align=center><h1>📚 STACKS</h1></div>
 <div align=center>
