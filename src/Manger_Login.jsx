@@ -5,31 +5,50 @@ import "./font/font.css";
 import logo from "../src/image/04-2.jpg";
 
 const styles = {
-    page: {
-        position: 'absolute',
-        top: '5px',
-        bottom: '0',
-        width: '100%',
-        maxWidth: '500px',
-        padding: '0 20px',
-        left: '50%',
-        transform: 'translate(-50%, 0)',
+    pageContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: '100vh',
         backgroundColor: '#F7f7f7',
-        overflow: 'hidden',
-        display: 'flex',
-        flexDirection: 'column',
     },
-    titleWrap: {
-        marginTop: '87px',
-        fontSize: '26px',
-        fontWeight: 700,
+    header: {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        backgroundColor: '#F7f7f7',
+        zIndex: 1000,
+        padding: '10px 0',
+        borderBottom: '1px solid #e0e0e0',
+    },
+    headerContent: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        width: '100%',
+        maxWidth: '800px',
+        margin: '0 auto',
+        padding: '0 15px',
+    },
+    body: {
+        marginTop: '80px',
+        flexGrow: 1,
+        overflowY: 'auto',
+        padding: '20px 15px',
+    },
+    loginFrame: {
+        maxWidth: '500px',
+        margin: '0 auto',
+        backgroundColor: '#F7f7f7',
+        padding: '0 10px',
+    },
+    title: {
+        fontSize: '24px',
+        fontWeight: '700',
         color: '#262626',
-        fontFamily: "NanumSquareNeoExtraBold",
-    },
-    contentWrap: {
-        marginTop: '15px',
-        display: 'flex',
-        flexDirection: 'column',
+        fontFamily: 'NanumSquareNeoExtraBold',
+        marginBottom: '20px',
+        textAlign: 'center',
     },
     inputTitle: {
         fontSize: '15px',
@@ -38,19 +57,15 @@ const styles = {
         textAlign: 'left',
         fontFamily: "'NanumSquareNeo'",
         marginBottom: '5px',
-        marginTop: '5px',
+        marginTop: '15px',
     },
     inputWrap: {
         display: 'flex',
         borderRadius: '8px',
         padding: '13px',
-        marginTop: '4px',
         backgroundColor: 'white',
         border: '1px solid #e2e0c0',
         marginBottom: '5px',
-    },
-    inputError: {
-        border: '1px solid #DA2127',
     },
     input: {
         width: '100%',
@@ -59,13 +74,7 @@ const styles = {
         height: '15px',
         fontSize: '14px',
         fontWeight: 400,
-        padding:'5px'
-    },
-    errorMessageWrap: {
-        marginTop: '8px',
-        color: '#ef0000',
-        fontSize: '12px',
-        fontFamily: "'NanumSquareNeo'",
+        padding: '5px',
     },
     loginButton: {
         width: '100%',
@@ -76,38 +85,36 @@ const styles = {
         borderRadius: '64px',
         color: 'white',
         cursor: 'pointer',
-        marginTop: '10px',
+        marginTop: '20px',
     },
     registerButton: {
         backgroundColor: '#F7f7f7',
         color: 'black',
-        width: '20%',
-        height: '25px',
+        width: 'auto',
+        padding: '5px 10px',
         border: 'none',
         borderRadius: '5px',
         fontFamily: "'NanumSquareNeoExtraBold'",
         cursor: 'pointer',
-        float: 'left',
         marginTop: '10px',
+        marginRight: '10px',
     },
-    knuLogo: {
-        float: 'left',
-        width: '100px',
-        marginBottom: '6px',
+    errorMessage: {
+        color: '#ef0000',
+        fontSize: '12px',
+        fontFamily: 'NanumSquareNeo',
+        marginTop: '5px',
     },
 };
 
 const Btnstyle = styled.button`
-    float: left;
-    width: 100px;
-    height: 100px; 
-    margin-bottom: 6px;
+    width: 80px;
+    height: 50px; 
     background: url(${logo}) no-repeat center;
     background-size: contain; 
     border: none; 
     cursor: pointer;
 `;
-
 
 export default function Login() {
     const [id, setId] = useState('');
@@ -155,98 +162,72 @@ export default function Login() {
         }
 
         if (id === 'knu2024' && password === '1946knu@@') {
-            // 로그인 성공 시 메인 페이지로 이동
-            navigate('/Main'); // 메인 페이지 경로로 이동
+            navigate('/Main');
             setIdError('');
             setPasswordError('');
+            setLoginSuccess(true);
         } else {
             setIdError('아이디 또는 비밀번호가 일치하지 않습니다.');
             setPasswordError('');
         }
     };
 
-    const handleRegisterClick = () => {
-        navigate('/register');
-    }
-
-    const handleHomeClick=()=> {
-        navigate("main");
-    }
-
-    const handleMemberRegiserClick=()=> {
-        navigate('/member_register')
-    }
-
     return (
-        <div style={styles.page}>
-            <div className="header">
-                <Btnstyle bg={logo} onClick={handleHomeClick} />
-            </div>
+        <div style={styles.pageContainer}>
+            <header style={styles.header}>
+                <div style={styles.headerContent}>
+                    <Btnstyle onClick={() => navigate("/main")}/>
+                </div>
+            </header>
+            <div style={styles.body}>
+                <div style={styles.loginFrame}>
+                    <h1 style={styles.title}>관리자 로그인</h1>
+                    
+                    <form onSubmit={handleSubmit}>
+                        <div>
+                            <div style={styles.inputTitle}>아이디</div>
+                            <div style={styles.inputWrap}>
+                                <input
+                                    id="id"
+                                    type="text"
+                                    placeholder="knu1946"
+                                    value={id}
+                                    onChange={handleIdChange}
+                                    style={styles.input}
+                                />
+                            </div>
+                            {idError && <div style={styles.errorMessage}>{idError}</div>}
+                        </div>
 
-            <div style={styles.titleWrap}>
-                User Login
-            </div>
-            <form onSubmit={handleSubmit}>
-                <div style={styles.contentWrap}>
-                    <label style={styles.inputTitle} htmlFor="id">
-                        ID
-                    </label>
-                    <div style={styles.inputWrap}>
-                        <input
-                            id="id"
-                            type="text"
-                            placeholder="knu1946"
-                            value={id}
-                            onChange={handleIdChange}
-                            style={styles.input}
-                        />
+                        <div>
+                            <div style={styles.inputTitle}>비밀번호</div>
+                            <div style={styles.inputWrap}>
+                                <input
+                                    id="password"
+                                    type="password"
+                                    placeholder="영문, 숫자, 특수문자 포함 8자 이상"
+                                    value={password}
+                                    onChange={handlePasswordChange}
+                                    style={styles.input}
+                                />
+                            </div>
+                            {passwordError && <div style={styles.errorMessage}>{passwordError}</div>}
+                        </div>
+
+                        <button type="submit" style={styles.loginButton}>
+                            로그인하기
+                        </button>
+                    </form>
+
+                    <div>
+                        <button onClick={() => navigate('/register')} style={styles.registerButton}>
+                            관리자 등록
+                        </button>
                     </div>
-                </div>
 
-                <div style={styles.errorMessageWrap}>
-                    {idError && <div>{idError}</div>}
+                    {loginSuccess && <div style={{ color: 'green', marginTop: '10px', textAlign: 'center' }}>로그인 성공!</div>}
                 </div>
-
-                <div style={styles.contentWrap}>
-                    <label style={styles.inputTitle} htmlFor="password">
-                        PW
-                    </label>
-                    <div style={styles.inputWrap}>
-                        <input
-                            id="password"
-                            type="password"
-                            placeholder="영문, 숫자, 특수문자 포함 8자 이상"
-                            value={password}
-                            onChange={handlePasswordChange}
-                            style={styles.input}
-                        />
-                    </div>
-                </div>
-
-                <div style={styles.errorMessageWrap}>
-                    {passwordError && <div>{passwordError}</div>}
-                </div>
-
-                <div className="login">
-                    <button type="submit" style={styles.loginButton}>
-                        Login
-                    </button>
-                </div>
-
-                <div className="register">
-                    <button type="button" onClick={handleRegisterClick} style={styles.registerButton}>
-                        관리자 등록
-                    </button>
-                </div>
-                <div className='member_register'>
-                    <button type="button" onClick={handleMemberRegiserClick} style={styles.registerButton}>
-                        User Register
-                    </button>
-                </div>
-            </form>
-
-
-            {loginSuccess && <div>로그인 성공!</div>}
+            </div>
         </div>
     );
 }
