@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { loadPaymentWidget } from "@tosspayments/payment-widget-sdk";
 import { nanoid } from 'nanoid';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 import "./font/font.css";
 
@@ -121,8 +121,8 @@ const styles = {
         backgroundColor: '#f9f9f9'
     },
     buttonContainer: {
-        display: 'flex',            // Flexbox로 버튼 컨테이너 설정
-        justifyContent: 'center',   // 가운데 정렬
+        display: 'flex',
+        justifyContent: 'center',
         marginTop: '20px'
     },
     button: {
@@ -166,24 +166,18 @@ const styles = {
         borderRadius: '5px',
         backgroundColor: '#f0f0f0'
     },
-    paymentWidget: {
-        width: '100%',
-        minHeight: '300px',  // 충분한 높이 확보
-        marginTop: '20px',
-        marginBottom: '20px'
-    },
     agreementWidget: {
-        width: '100%',
-        minHeight: '150px',  // 충분한 높이 확보
-        marginTop: '20px',
-        marginBottom: '20px'
+        width: '50%',
+        minHeight: '150px',
+        marginTop: '10px',
+        marginBottom: '10px'
     },
     modalContent: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         padding: '20px',
-        width: '100%'  // 전체 너비 사용
+        width: '100%'
     }
 };
 
@@ -192,6 +186,7 @@ export default function Payment() {
     const [language, setLanguage] = useState('ko');
     const paymentWidgetRef = useRef(null);
     const location = useLocation();
+    const navigate = useNavigate();
     const selectedItems = location.state?.selectedItems || [];
     const totalAmount = selectedItems.reduce((total, item) => {
         const price = menuData.find(menu => menu.name === item.name).price;
@@ -218,32 +213,18 @@ export default function Payment() {
         if (modalIsOpen && paymentWidgetRef.current) {
             const paymentWidget = paymentWidgetRef.current;
 
-            const renderPaymentWidgets = async () => {
+            const renderAgreementWidget = async () => {
                 try {
-                    console.log("결제 수단 렌더링 시도 중...");
-                    await paymentWidget.renderPaymentMethods("#payment-widget", {
-                        value: totalAmount,
-                        currency: 'KRW',
-                        country: 'KR',
-                        variantKey: 'DEFAULT',
-                    });
-                    console.log("결제 수단이 정상적으로 렌더링되었습니다.");
-
                     await paymentWidget.renderAgreement('#agreement');
                     console.log("약관이 정상적으로 렌더링되었습니다.");
                 } catch (error) {
-                    console.error("결제 수단을 렌더링하는 도중 오류가 발생했습니다:", error);
+                    console.error("약관을 렌더링하는 도중 오류가 발생했습니다:", error);
                 }
             };
 
-            // 모달이 열린 후 약간의 지연을 두고 렌더링 시도
-            setTimeout(renderPaymentWidgets, 200);
+            setTimeout(renderAgreementWidget, 200);
         }
-    }, [modalIsOpen, totalAmount]);
-    
-    
-    
-    
+    }, [modalIsOpen]);
 
     const openModal = () => {
         setModalIsOpen(true);
@@ -253,23 +234,17 @@ export default function Payment() {
         setModalIsOpen(false);
     };
 
-    const handlePayment = async () => {
-        const paymentWidget = paymentWidgetRef.current;
-
-        try {
-            await paymentWidget?.requestPayment({
-                orderId: nanoid(),
-                orderName: selectedItems.map(item => item.name).join(", "),
-                customerName: "Jenni",
-                customerEmail: "customer123@knu.ac.kr",
-                successUrl: `${window.location.origin}/success`,
-                failUrl: `${window.location.origin}/fail`,
-            });
-        } catch (err) {
-            console.log(err);
-        }
+    const handlePayment = () => {
+        // 결제 요청 없이 바로 PaySuccess 페이지로 이동
+        navigate('/paysuccess', { 
+            state: { 
+                orderId: 'dummy_order_id', // 결제 요청을 하지 않으므로 더미 데이터 사용
+                amount: totalAmount, 
+                language // 현재 계산된 총 금액 전달
+            } 
+        });
     };
-
+    
     const changeLanguage = (lang) => {
         setLanguage(lang);
     };
@@ -335,9 +310,7 @@ export default function Payment() {
                <div style={styles.modalContent}>
                     <h2 style={styles.h2}>{t.paymentConfirmation}</h2>
                     <p style={styles.p}>{t.totalPaymentAmount}: {totalAmount}원</p>
-                    <h3 style={styles.h2}>{t.selectPaymentMethod}</h3>
-                    <div id="payment-widget" style={{width:'80%'}}></div>
-                    <div id="agreement" style={{ minHeight: '150px' ,width:'50%'}}></div>
+                    <div id="agreement" style={styles.agreementWidget}></div>
                     <div style={styles.buttonContainer}>
                         <button className="popup" onClick={handlePayment} style={styles.popup}>{t.proceedPayment}</button>
                         <button onClick={closeModal} style={styles.popup}>{t.cancel}</button>

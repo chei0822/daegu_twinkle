@@ -378,7 +378,7 @@ export default function Register() {
         <div style={styles.pageContainer}>
             <header style={styles.header}>
                 <div style={styles.headerContent}>
-                    <Btnstyle onClick={() => navigate("/login")}/>
+                    <Btnstyle onClick={() => navigate("/member_login")}/>
                 </div>    
 
                 <h1 style={styles.title}>{t.title}</h1>
