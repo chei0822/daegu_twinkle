@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/17.0.12-win32-x86_64"/>
+	<classpathentry kind="src" output="target/classes" path="src/main/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/com/h2database/h2/2.3.230/h2-2.3.230.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="h2"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="2.3.230"/>
+			<attribute name="maven.groupId" value="com.h2database"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/javax/servlet/jstl/1.2/jstl-1.2.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="jstl"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="1.2"/>
+			<attribute name="maven.groupId" value="javax.servlet"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/commons-beanutils/commons-beanutils/1.9.4/commons-beanutils-1.9.4.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="commons-beanutils"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="1.9.4"/>
+			<attribute name="maven.groupId" value="commons-beanutils"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="commons-logging"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="1.2"/>
+			<attribute name="maven.groupId" value="commons-logging"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="commons-collections"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="3.2.2"/>
+			<attribute name="maven.groupId" value="commons-collections"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/org/apache/tomcat/embed/tomcat-embed-jasper/11.0.0-M26/tomcat-embed-jasper-11.0.0-M26.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="tomcat-embed-jasper"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="11.0.0-M26"/>
+			<attribute name="maven.groupId" value="org.apache.tomcat.embed"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/11.0.0-M26/tomcat-embed-core-11.0.0-M26.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="tomcat-embed-core"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="11.0.0-M26"/>
+			<attribute name="maven.groupId" value="org.apache.tomcat.embed"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/org/apache/tomcat/tomcat-annotations-api/11.0.0-M26/tomcat-annotations-api-11.0.0-M26.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="tomcat-annotations-api"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="11.0.0-M26"/>
+			<attribute name="maven.groupId" value="org.apache.tomcat"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/11.0.0-M26/tomcat-embed-el-11.0.0-M26.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="tomcat-embed-el"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="11.0.0-M26"/>
+			<attribute name="maven.groupId" value="org.apache.tomcat.embed"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/org/eclipse/jdt/ecj/3.38.0/ecj-3.38.0.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="ecj"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="3.38.0"/>
+			<attribute name="maven.groupId" value="org.eclipse.jdt"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/org/springframework/boot/spring-boot-starter-thymeleaf/3.3.4/spring-boot-starter-thymeleaf-3.3.4.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="spring-boot-starter-thymeleaf"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="3.3.4"/>
+			<attribute name="maven.groupId" value="org.springframework.boot"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/org/springframework/boot/spring-boot-starter/3.3.4/spring-boot-starter-3.3.4.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="spring-boot-starter"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="3.3.4"/>
+			<attribute name="maven.groupId" value="org.springframework.boot"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/org/springframework/boot/spring-boot/3.3.4/spring-boot-3.3.4.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="spring-boot"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="3.3.4"/>
+			<attribute name="maven.groupId" value="org.springframework.boot"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/org/springframework/spring-context/6.1.13/spring-context-6.1.13.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="spring-context"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="6.1.13"/>
+			<attribute name="maven.groupId" value="org.springframework"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/org/springframework/spring-aop/6.1.13/spring-aop-6.1.13.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="spring-aop"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="6.1.13"/>
+			<attribute name="maven.groupId" value="org.springframework"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/org/springframework/spring-beans/6.1.13/spring-beans-6.1.13.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="spring-beans"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="6.1.13"/>
+			<attribute name="maven.groupId" value="org.springframework"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/org/springframework/spring-expression/6.1.13/spring-expression-6.1.13.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="spring-expression"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="6.1.13"/>
+			<attribute name="maven.groupId" value="org.springframework"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/io/micrometer/micrometer-observation/1.12.10/micrometer-observation-1.12.10.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="micrometer-observation"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="1.12.10"/>
+			<attribute name="maven.groupId" value="io.micrometer"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/io/micrometer/micrometer-commons/1.12.10/micrometer-commons-1.12.10.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="micrometer-commons"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="1.12.10"/>
+			<attribute name="maven.groupId" value="io.micrometer"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.3.4/spring-boot-autoconfigure-3.3.4.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="spring-boot-autoconfigure"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="3.3.4"/>
+			<attribute name="maven.groupId" value="org.springframework.boot"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/org/springframework/boot/spring-boot-starter-logging/3.3.4/spring-boot-starter-logging-3.3.4.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="spring-boot-starter-logging"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="3.3.4"/>
+			<attribute name="maven.groupId" value="org.springframework.boot"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/ch/qos/logback/logback-classic/1.5.8/logback-classic-1.5.8.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="logback-classic"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="1.5.8"/>
+			<attribute name="maven.groupId" value="ch.qos.logback"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/ch/qos/logback/logback-core/1.5.8/logback-core-1.5.8.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="logback-core"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="1.5.8"/>
+			<attribute name="maven.groupId" value="ch.qos.logback"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.23.1/log4j-to-slf4j-2.23.1.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="log4j-to-slf4j"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="2.23.1"/>
+			<attribute name="maven.groupId" value="org.apache.logging.log4j"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/org/apache/logging/log4j/log4j-api/2.23.1/log4j-api-2.23.1.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="log4j-api"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="2.23.1"/>
+			<attribute name="maven.groupId" value="org.apache.logging.log4j"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/org/slf4j/jul-to-slf4j/2.0.16/jul-to-slf4j-2.0.16.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="jul-to-slf4j"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="2.0.16"/>
+			<attribute name="maven.groupId" value="org.slf4j"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="jakarta.annotation-api"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="2.1.1"/>
+			<attribute name="maven.groupId" value="jakarta.annotation"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/org/springframework/spring-core/6.1.13/spring-core-6.1.13.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="spring-core"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="6.1.13"/>
+			<attribute name="maven.groupId" value="org.springframework"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/org/springframework/spring-jcl/6.1.13/spring-jcl-6.1.13.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="spring-jcl"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="6.1.13"/>
+			<attribute name="maven.groupId" value="org.springframework"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/org/yaml/snakeyaml/2.2/snakeyaml-2.2.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="snakeyaml"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="2.2"/>
+			<attribute name="maven.groupId" value="org.yaml"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/org/thymeleaf/thymeleaf-spring6/3.1.2.RELEASE/thymeleaf-spring6-3.1.2.RELEASE.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="thymeleaf-spring6"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="3.1.2.RELEASE"/>
+			<attribute name="maven.groupId" value="org.thymeleaf"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/org/thymeleaf/thymeleaf/3.1.2.RELEASE/thymeleaf-3.1.2.RELEASE.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="thymeleaf"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="3.1.2.RELEASE"/>
+			<attribute name="maven.groupId" value="org.thymeleaf"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/org/attoparser/attoparser/2.0.7.RELEASE/attoparser-2.0.7.RELEASE.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="attoparser"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="2.0.7.RELEASE"/>
+			<attribute name="maven.groupId" value="org.attoparser"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/org/unbescape/unbescape/1.1.6.RELEASE/unbescape-1.1.6.RELEASE.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="unbescape"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="1.1.6.RELEASE"/>
+			<attribute name="maven.groupId" value="org.unbescape"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="c:/Users/xuu62/.m2/repository/org/slf4j/slf4j-api/2.0.7/slf4j-api-2.0.7.jar">
+		<attributes>
+			<attribute name="maven.artifactId" value="slf4j-api"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.scope" value="compile"/>
+			<attribute name="maven.version" value="2.0.7"/>
+			<attribute name="maven.groupId" value="org.slf4j"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>
