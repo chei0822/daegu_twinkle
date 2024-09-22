@@ -39,18 +39,6 @@ const styles = {
         flex:1,
         marginTop:'5px'
     },
-    languageButtons: {
-        display: 'flex',
-        justifyContent: 'center',
-        gap: '5px',
-    },
-    languageButton: {
-        padding: '5px 10px',
-        border: 'none',
-        borderRadius: '5px',
-        cursor: 'pointer',
-        backgroundColor: '#e0e0e0',
-    },
     body: {
         marginTop: '120px', // Adjust based on your header height
         flexGrow: 1,
@@ -107,6 +95,21 @@ const styles = {
         color: '#ef0000',
         fontSize: '12px',
         fontFamily: 'NanumSquareNeo',
+    },
+    languageButtons: {
+        display: 'flex',
+        justifyContent: 'center',
+        gap: '10px',
+        marginBottom: '20px',
+    },
+    languageButton: {
+        padding: '5px 10px',
+        cursor: 'pointer',
+        border: 'none',
+        borderRadius: '5px',
+        backgroundColor: '#f0f0f0',
+        fontFamily: "'NanumSquareNeo'",
+        fontSize: '14px',
     },
 };
 
@@ -380,12 +383,12 @@ export default function Register() {
 
                 <h1 style={styles.title}>{t.title}</h1>
                 <div style={styles.languageButtons}>
-                    <button onClick={() => changeLanguage('ko')}>한국어</button>
-                    <button onClick={() => changeLanguage('en')}>English</button>
-                    <button onClick={() => changeLanguage('zh')}>中文</button>
-                    <button onClick={() => changeLanguage('ja')}>日本語</button>
-                    <button onClick={() => changeLanguage('es')}>Español</button>
-                </div>
+                        <button onClick={() => changeLanguage('ko')} style={styles.languageButton}>한국어</button>
+                        <button onClick={() => changeLanguage('en')} style={styles.languageButton}>English</button>
+                        <button onClick={() => changeLanguage('zh')} style={styles.languageButton}>中文</button>
+                        <button onClick={() => changeLanguage('ja')} style={styles.languageButton}>日本語</button>
+                        <button onClick={() => changeLanguage('es')} style={styles.languageButton}>Español</button>
+                    </div>
                     
                 
             </header>

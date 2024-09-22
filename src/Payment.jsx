@@ -7,8 +7,8 @@ import "./font/font.css";
 
 Modal.setAppElement('#root');
 
-const clientKey = "test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq";
-const customerKey = "YbX2HuSlsC9uVJW6NMRMj";
+const clientKey = "test_ck_vZnjEJeQVxJYWbkjx0298PmOoBN0";
+const customerKey = "LlDJaYngro1Rx5lPdGPm3ezGdRpX"
 
 const menuData = [
     { name: "우동&주먹밥", image: "udong.jpg", price: 5000 },
@@ -165,6 +165,25 @@ const styles = {
         border: 'none',
         borderRadius: '5px',
         backgroundColor: '#f0f0f0'
+    },
+    paymentWidget: {
+        width: '100%',
+        minHeight: '300px',  // 충분한 높이 확보
+        marginTop: '20px',
+        marginBottom: '20px'
+    },
+    agreementWidget: {
+        width: '100%',
+        minHeight: '150px',  // 충분한 높이 확보
+        marginTop: '20px',
+        marginBottom: '20px'
+    },
+    modalContent: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        padding: '20px',
+        width: '100%'  // 전체 너비 사용
     }
 };
 
@@ -182,12 +201,49 @@ export default function Payment() {
     const t = translations[language];
 
     useEffect(() => {
-        (async () => {
-            const paymentWidget = await loadPaymentWidget(clientKey, customerKey);
-            paymentWidget.renderPaymentMethods("#payment-widget", totalAmount);
-            paymentWidgetRef.current = paymentWidget;
-        })();
-    }, [totalAmount]);
+        const initializePaymentWidget = async () => {
+            try {
+                const paymentWidget = await loadPaymentWidget(clientKey, customerKey);
+                console.log("Payment widget initialized:", paymentWidget);
+                paymentWidgetRef.current = paymentWidget;
+            } catch (error) {
+                console.error("Error initializing payment widget:", error);
+            }
+        };
+    
+        initializePaymentWidget();
+    }, []);
+
+    useEffect(() => {
+        if (modalIsOpen && paymentWidgetRef.current) {
+            const paymentWidget = paymentWidgetRef.current;
+
+            const renderPaymentWidgets = async () => {
+                try {
+                    console.log("결제 수단 렌더링 시도 중...");
+                    await paymentWidget.renderPaymentMethods("#payment-widget", {
+                        value: totalAmount,
+                        currency: 'KRW',
+                        country: 'KR',
+                        variantKey: 'DEFAULT',
+                    });
+                    console.log("결제 수단이 정상적으로 렌더링되었습니다.");
+
+                    await paymentWidget.renderAgreement('#agreement');
+                    console.log("약관이 정상적으로 렌더링되었습니다.");
+                } catch (error) {
+                    console.error("결제 수단을 렌더링하는 도중 오류가 발생했습니다:", error);
+                }
+            };
+
+            // 모달이 열린 후 약간의 지연을 두고 렌더링 시도
+            setTimeout(renderPaymentWidgets, 200);
+        }
+    }, [modalIsOpen, totalAmount]);
+    
+    
+    
+    
 
     const openModal = () => {
         setModalIsOpen(true);
@@ -264,12 +320,28 @@ export default function Payment() {
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
                 contentLabel="결제 모달"
+                style={{
+                    content: {
+                        width: '50%',
+                        height: '80%',
+                        margin: 'auto',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                    }
+                }}
             >
-                <h2 style={styles.h2}>{t.paymentConfirmation}</h2>
-                <p style={styles.p}>{t.totalPaymentAmount}: {totalAmount}원</p>
-                <div id="payment-widget" style={styles.buttonContainer}>
-                    <button className="popup" onClick={handlePayment} style={styles.popup}>{t.proceedPayment}</button>
-                    <button onClick={closeModal} style={styles.popup}>{t.cancel}</button>
+               <div style={styles.modalContent}>
+                    <h2 style={styles.h2}>{t.paymentConfirmation}</h2>
+                    <p style={styles.p}>{t.totalPaymentAmount}: {totalAmount}원</p>
+                    <h3 style={styles.h2}>{t.selectPaymentMethod}</h3>
+                    <div id="payment-widget" style={{width:'80%'}}></div>
+                    <div id="agreement" style={{ minHeight: '150px' ,width:'50%'}}></div>
+                    <div style={styles.buttonContainer}>
+                        <button className="popup" onClick={handlePayment} style={styles.popup}>{t.proceedPayment}</button>
+                        <button onClick={closeModal} style={styles.popup}>{t.cancel}</button>
+                    </div>
                 </div>
             </Modal>
         </div>

@@ -223,9 +223,6 @@ export default function Login() {
                         <button onClick={() => navigate('/register')} style={styles.registerButton}>
                             관리자 등록
                         </button>
-                        <button onClick={() => navigate('/member_register')} style={styles.registerButton}>
-                            User Register
-                        </button>
                     </div>
 
                     {loginSuccess && <div style={{ color: 'green', marginTop: '10px', textAlign: 'center' }}>로그인 성공!</div>}

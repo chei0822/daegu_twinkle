@@ -105,8 +105,89 @@ const styles = {
         fontFamily: 'NanumSquareNeo',
         marginTop: '5px',
     },
+    languageButtons: {
+        display: 'flex',
+        justifyContent: 'center',
+        gap: '10px',
+        marginBottom: '20px',
+    },
+    languageButton: {
+        padding: '5px 10px',
+        cursor: 'pointer',
+        border: 'none',
+        borderRadius: '5px',
+        backgroundColor: '#f0f0f0',
+        fontFamily: "'NanumSquareNeo'",
+        fontSize: '14px',
+    },
 };
-
+const translations ={
+    ko: {
+        title: "사용자 로그인",
+        id: "아이디",
+        password: "비밀번호",
+        loginButton: "로그인하기",
+        registerButton: "사용자 등록",
+        idPlaceholder: "knu1946",
+        passwordPlaceholder: "영문, 숫자, 특수문자 포함 8자 이상",
+        idError: "올바른 아이디를 입력해주세요",
+        passwordError: "영문, 숫자, 특수문자 포함 8자 이상 입력해주세요",
+        loginSuccess: "로그인 성공!",
+        loginFailure: "아이디 또는 비밀번호가 일치하지 않습니다."
+    },
+    en: {
+        title: "User Login",
+        id: "ID",
+        password: "Password",
+        loginButton: "Login",
+        registerButton: "User Registration",
+        idPlaceholder: "knu1946",
+        passwordPlaceholder: "At least 8 characters including letters, numbers, and special characters",
+        idError: "Please enter a valid ID",
+        passwordError: "Please enter at least 8 characters including letters, numbers, and special characters",
+        loginSuccess: "Login successful!",
+        loginFailure: "ID or password does not match."
+    },
+    zh: {
+        title: "用户登录",
+        id: "账号",
+        password: "密码",
+        loginButton: "登录",
+        registerButton: "用户注册",
+        idPlaceholder: "knu1946",
+        passwordPlaceholder: "至少8个字符，包括字母、数字和特殊字符",
+        idError: "请输入有效的账号",
+        passwordError: "请输入至少8个字符，包括字母、数字和特殊字符",
+        loginSuccess: "登录成功！",
+        loginFailure: "账号或密码不匹配。"
+    },
+    ja: {
+        title: "ユーザーログイン",
+        id: "ID",
+        password: "パスワード",
+        loginButton: "ログイン",
+        registerButton: "ユーザー登録",
+        idPlaceholder: "knu1946",
+        passwordPlaceholder: "英字、数字、特殊文字を含む8文字以上",
+        idError: "有効なIDを入力してください",
+        passwordError: "英字、数字、特殊文字を含む8文字以上を入力してください",
+        loginSuccess: "ログイン成功！",
+        loginFailure: "IDまたはパスワードが一致しません。"
+    },
+    es: {
+        title: "Inicio de sesión de usuario",
+        id: "ID",
+        password: "Contraseña",
+        loginButton: "Iniciar sesión",
+        registerButton: "Registro de usuario",
+        idPlaceholder: "knu1946",
+        passwordPlaceholder: "Al menos 8 caracteres incluyendo letras, números y caracteres especiales",
+        idError: "Por favor, introduzca un ID válido",
+        passwordError: "Por favor, introduzca al menos 8 caracteres incluyendo letras, números y caracteres especiales",
+        loginSuccess: "¡Inicio de sesión exitoso!",
+        loginFailure: "El ID o la contraseña no coinciden."
+    }
+}
 const Btnstyle = styled.button`
     width: 80px;
     height: 50px; 
@@ -122,7 +203,10 @@ export default function Login() {
     const [idError, setIdError] = useState('');
     const [passwordError, setPasswordError] = useState('');
     const [loginSuccess, setLoginSuccess] = useState(false);
+    const [language, setLanguage] = useState('ko');
     const navigate = useNavigate();
+
+    const t = translations[language];
 
     const validatePassword = (password) => {
         const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
@@ -134,7 +218,7 @@ export default function Login() {
         setPassword(newPassword);
 
         if (!validatePassword(newPassword)) {
-            setPasswordError('영문, 숫자, 특수문자 포함 8자 이상 입력해주세요');
+            setPasswordError(t.passwordError);
         } else {
             setPasswordError('');
         }
@@ -145,7 +229,7 @@ export default function Login() {
         setId(newId);
 
         if (newId === '') {
-            setIdError('올바른 아이디를 입력해주세요');
+            setIdError(t.idError);
         } else {
             setIdError('');
         }
@@ -155,10 +239,10 @@ export default function Login() {
         e.preventDefault();
 
         if (id === '') {
-            setIdError('올바른 아이디를 입력해주세요');
+            setIdError(t.idError);
         }
         if (!validatePassword(password)) {
-            setPasswordError('영문, 숫자, 특수문자 포함 8자 이상 입력해주세요');
+            setPasswordError(t.passwordError);
         }
 
         if (id === 'knu2024' && password === '1946knu@@') {
@@ -167,9 +251,13 @@ export default function Login() {
             setPasswordError('');
             setLoginSuccess(true);
         } else {
-            setIdError('아이디 또는 비밀번호가 일치하지 않습니다.');
+            setIdError(t.loginFailure);
             setPasswordError('');
         }
+    };
+
+    const changeLanguage = (lang) => {
+        setLanguage(lang);
     };
 
     return (
@@ -181,11 +269,18 @@ export default function Login() {
             </header>
             <div style={styles.body}>
                 <div style={styles.loginFrame}>
-                    <h1 style={styles.title}>관리자 로그인</h1>
+                    <div style={styles.languageButtons}>
+                        <button onClick={() => changeLanguage('ko')} style={styles.languageButton}>한국어</button>
+                        <button onClick={() => changeLanguage('en')} style={styles.languageButton}>English</button>
+                        <button onClick={() => changeLanguage('zh')} style={styles.languageButton}>中文</button>
+                        <button onClick={() => changeLanguage('ja')} style={styles.languageButton}>日本語</button>
+                        <button onClick={() => changeLanguage('es')} style={styles.languageButton}>Español</button>
+                    </div>
+                    <h1 style={styles.title}>{t.title}</h1>
                     
                     <form onSubmit={handleSubmit}>
                         <div>
-                            <div style={styles.inputTitle}>아이디</div>
+                            <div style={styles.inputTitle}>{t.id}</div>
                             <div style={styles.inputWrap}>
                                 <input
                                     id="id"
@@ -200,12 +295,12 @@ export default function Login() {
                         </div>
 
                         <div>
-                            <div style={styles.inputTitle}>비밀번호</div>
+                            <div style={styles.inputTitle}>{t.password}</div>
                             <div style={styles.inputWrap}>
                                 <input
                                     id="password"
                                     type="password"
-                                    placeholder="영문, 숫자, 특수문자 포함 8자 이상"
+                                    placeholder={t.passwordPlaceholder}
                                     value={password}
                                     onChange={handlePasswordChange}
                                     style={styles.input}
@@ -215,16 +310,13 @@ export default function Login() {
                         </div>
 
                         <button type="submit" style={styles.loginButton}>
-                            로그인하기
+                            {t.loginButton}
                         </button>
                     </form>
 
                     <div>
-                        <button onClick={() => navigate('/login')} style={styles.registerButton}>
-                            관리자 로그인
-                        </button>
                         <button onClick={() => navigate('/member_register')} style={styles.registerButton}>
-                            User Register
+                            {t.registerButton}
                         </button>
                     </div>
 
