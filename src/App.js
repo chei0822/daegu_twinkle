@@ -7,6 +7,9 @@ import MemberRegister from "./Member_Register"
 import Member_login from "./Member_login"
 import Payment from "./Payment"
 import success from "./paysuccess"
+import fail from "./payfail"
+
+
 
 function App() {
     return (
@@ -18,8 +21,10 @@ function App() {
                 <Route path="/main" element={<Main />} /> 
                 <Route path="/member_register" element={<MemberRegister/>}/>
                 <Route path="/member_login" element={<Member_login/>}/>
-                <Route path="/payment" element={<Payment/>}/>
+                <Route exact path="/payment" element={<Payment/>}/>
                 <Route path="/success" element={<success/>}/>
+                <Route path="/fail" element={<fail/>}/>
+                <Route path="/login/main" element={<Main />} /> 
             </Routes>
         </Router>
     );

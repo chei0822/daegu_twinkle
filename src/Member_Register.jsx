@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from "styled-components";
-import logo from "../src/image/04-2.jpg"
+import axios from 'axios'; // axios 추가
+import logo from "../src/image/04-2.jpg";
 
 
 const styles = {
@@ -112,14 +113,11 @@ export default function Register() {
         validateField(name, value);
     };
     
-    
-
     const validateField = (name, value) => {
         let tempErrors = { ...errors };
     
         switch (name) {
             case 'employeeId':
-                // 영문자 또는 숫자가 아닌 경우
                 const idValid = /^[a-zA-Z0-9]*$/.test(value);
                 if (!idValid) {
                     tempErrors.employeeId = '학번은 숫자만 사용할 수 있습니다.';
@@ -151,25 +149,33 @@ export default function Register() {
     
         setErrors(tempErrors);
     };
-    
-    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (Object.keys(errors).every(key => !errors[key])) {
-            try {
-                // API로 데이터 전송 (여기에 실제 API 호출)
-                setSuccessMessage('사용자 등록에 성공하였습니다!');
-                setTimeout(() => {
-                    navigate('/login'); // 로그인 페이지로 이동
-                }, 2000);
-            } catch (error) {
-                console.error("회원가입 중 오류 발생:", error);
-            }
+            axios({
+                method: "post",
+                url: "jdbc:h2:tcp://localhost/~/jwbookdb",
+                data: {
+                  email: formData.employeeId,  // corrected variable names
+                  password: formData.password, // corrected variable names
+                },
+            })
+            .then((res) => {
+                console.log(res);
+                const accessToken = res.data.token;
+                // Set token in cookies
+                document.cookie = `is_login=${accessToken}; path=/`;
+                navigate("/");  
+            })
+            .catch((error) => {
+                console.log(error);
+            });
         } else {
             alert("입력 값을 확인해주세요.");
         }
     };
+    
 
     const handleLoginClick=()=> {
         navigate("/login");

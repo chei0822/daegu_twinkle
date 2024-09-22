@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 import "./font/font.css";
 import logo from "../src/image/04-2.jpg";
+import Main from "./Main";
 
 const styles = {
     page: {
@@ -166,11 +167,11 @@ export default function Login() {
     };
 
     const handleRegisterClick = () => {
-        navigate('/login');
+        navigate('/register');
     }
 
     const handleHomeClick=()=> {
-        navigate("main");
+        navigate("/main");
     }
 
     const handleMemberRegiserClick=()=> {

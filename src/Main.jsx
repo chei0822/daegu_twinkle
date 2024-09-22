@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import "./font/font.css";
 
 const styles = {
@@ -55,7 +56,7 @@ const menuData = [
 ];
   
 
-function Main() {
+function Main({history}) {
     const [selectedItems, setSelectedItems] = useState([]);
   
     const handleSelect = (menuName) => {
