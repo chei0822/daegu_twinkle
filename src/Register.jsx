@@ -180,7 +180,7 @@ export default function Register() {
         <div style={styles.pageContainer}>
             <header style={styles.header}>
                 <div style={styles.headerContent}>
-                    <Btnstyle onClick={() => navigate("/login")}/>
+                    <Btnstyle onClick={() => navigate("/manager-login")}/>
                 </div>
             </header>
             <div style={styles.body}>
