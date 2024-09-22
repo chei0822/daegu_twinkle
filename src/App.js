@@ -7,7 +7,7 @@ import Main from './Main';
 import MemberRegister from "./Member_Register";
 import Member_login from "./Member_login";
 import Payment from "./Payment";
-import { SuccessPage } from "./Paysuccess";
+import { SuccessPage } from "./paysuccess";
 
 function App() {
     return (
